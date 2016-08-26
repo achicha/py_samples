@@ -1,0 +1,16 @@
+# docker build -t u1604flask -f /c/Users/path_to_Dockerfile /c/Users/
+# docker run --name flask_py3 --user root -it -p 5000:5000 -d -v /c/Users/path_to_dir:/app u1604flask /usr/bin/python3 /app/run.py
+
+FROM ubuntu:16.04
+MAINTAINER me
+USER root
+
+#install python3
+RUN apt-get update
+RUN	apt-get install -y nano tree curl git \
+                       python3 python3-dev python3-pip python3-setuptools
+
+#install flask
+RUN pip3 install flask flask-login flask-openid flask-mail flask-sqlalchemy \
+                 sqlalchemy-migrate flask-whooshalchemy flask-wtf flask-babel \
+                 guess_language flipflop coverage
