@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 # create the application object
 app = Flask(__name__)
-app.config.from_object('config.DevConfig') # import config from file
+app.config.from_object('config.DevConfig')  # import config from file
 
 
 # create sqlalchemy object
@@ -15,6 +15,7 @@ db = SQLAlchemy(app)
 
 # import models
 from models import *
+
 
 # login required decorator
 def login_required(f):
@@ -27,6 +28,7 @@ def login_required(f):
             return redirect(url_for('login'))
     return wrapper
 
+
 # use decorators to link the function to an url
 @app.route('/')
 @login_required
@@ -34,9 +36,11 @@ def home():
     posts = db.session.query(BlogPost)
     return render_template('index.html', posts=posts)
 
+
 @app.route('/welcome')
 def welcome():
-    return render_template('welcome.html') # render a template
+    return render_template('welcome.html')  # render a template
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -50,6 +54,7 @@ def login():
             # The url_for() function generates an endpoint for the provided method.
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
+
 
 @app.route('/logout')
 @login_required
