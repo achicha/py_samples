@@ -1,0 +1,43 @@
+# docker-compose stop && docker-compose rm -f \
+# && docker-compose build --no-cache web && docker-compose build --no-cache postgres \
+# && docker-compose up -d
+
+# check DB from host
+# psql -h 127.0.0.1 -U docker -d discover_flask -p 5434
+
+version: '2'
+services:
+  web:
+    restart: always
+    container_name: discover_flask
+    build:
+      context: .
+      dockerfile: ./etc/Dockerfile
+    working_dir: /opt/web
+    links:
+      - postgres
+    volumes:
+      - ./:/opt/web
+    ports:
+      - "2225:22" # ssh to container
+      - "5000:5000"
+    command: /sbin/my_init
+
+
+  data:
+    restart: 'no'
+    image: postgres:9.5
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    command: echo "start data container"
+
+
+  postgres:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./etc/Dockerfile_postgres
+    volumes_from:
+      - data
+    ports:
+      - "5434:5432"

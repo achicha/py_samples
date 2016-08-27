@@ -1,6 +1,7 @@
 *.db
 *.mo
 
+*.pub
 
 .idea/
 .idea/*
