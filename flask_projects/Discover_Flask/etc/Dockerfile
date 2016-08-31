@@ -19,7 +19,8 @@ RUN     apt-get update -qq \
         python3-psycopg2 # postgresql
 
         # flask
-RUN     pip3 install flask flask-wtf flask-sqlalchemy sqlalchemy-migrate \
+RUN     pip3 install flask flask-migrate \
+        flask-wtf flask-sqlalchemy sqlalchemy-migrate \
         flask-login flask-mail  flask-whooshalchemy flask-babel \
         flask-openid guess_language flipflop coverage \
         # gunicorn
