@@ -1,13 +1,14 @@
 from flask import Flask, render_template, request, redirect, \
     url_for, session, flash, g
-from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from functools import wraps
 
 
 # create the application object
 app = Flask(__name__)
 app.config.from_object('config.DevConfig')  # import config from file
-
+bcrypt = Bcrypt(app)
 
 # create sqlalchemy object
 db = SQLAlchemy(app)
