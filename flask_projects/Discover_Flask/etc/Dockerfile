@@ -22,8 +22,8 @@ RUN     apt-get update -qq \
 RUN     pip3 install flask \
         flask-sqlalchemy flask-migrate \
         flask-bcrypt flask-login \
-        flask-script flask-testing coverage \
         flask-wtf \
+        flask-script flask-testing coverage \
         flask-mail  flask-whooshalchemy flask-babel \
         # gunicorn
         gunicorn  \

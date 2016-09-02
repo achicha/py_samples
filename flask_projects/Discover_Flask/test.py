@@ -1,6 +1,7 @@
 from project import app
 import unittest
 
+
 class FlaskTestCase(unittest.TestCase):
     # Ensure that Flask was set up correctly
     def test_index(self):
@@ -30,9 +31,9 @@ class FlaskTestCase(unittest.TestCase):
     def test_logout(self):
         tester = app.test_client(self)
         tester.post('/login',
-                   data=dict(username='admin', password='admin'),
-                   follow_redirects=True)
-        response = tester.get('/logout',follow_redirects=True)
+                    data=dict(username='admin', password='admin'),
+                    follow_redirects=True)
+        response = tester.get('/logout', follow_redirects=True)
         self.assertIn(b'You were logged out', response.data)
 
     def test_main_route_requires_login(self):
@@ -43,8 +44,8 @@ class FlaskTestCase(unittest.TestCase):
     def test_posts_show_main_page(self):
         tester = app.test_client(self)
         response = tester.post('/login',
-                    data=dict(username='admin', password='admin'),
-                    follow_redirects=True)
+                               data=dict(username='admin', password='admin'),
+                               follow_redirects=True)
         self.assertIn(b'Posts:', response.data)
 
 
