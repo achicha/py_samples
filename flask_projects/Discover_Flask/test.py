@@ -31,7 +31,7 @@ class FlaskTestCase(BaseTestCase):
     # Ensure that main page requires user login
     def test_main_route_requires_login(self):
         response = self.client.get('/', follow_redirects=True)
-        self.assertIn(b'You need to login first', response.data)
+        self.assertIn(b'Please log in to access this page', response.data)
 
     # Ensure that welcome page loads
     def test_welcome_route_works_as_expected(self):
