@@ -4,17 +4,25 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from functools import wraps
 
+################
+# config
+################
 
 # create the application object
 app = Flask(__name__)
 app.config.from_object('config.DevConfig')  # import config from file
 bcrypt = Bcrypt(app)
 
+
 # create sqlalchemy object
 db = SQLAlchemy(app)
 
 # import models
 from models import *
+from project.users.views import users_blueprint
+
+# register our blueprints
+app.register_blueprint(users_blueprint)
 
 
 # login required decorator
@@ -25,9 +33,13 @@ def login_required(f):
             return f(*args, **kwargs)
         else:
             flash('You need to login first')
-            return redirect(url_for('login'))
+            return redirect(url_for('users.login'))
     return wrapper
 
+
+################
+# routes
+################
 
 # use decorators to link the function to an url
 @app.route('/')
@@ -41,27 +53,6 @@ def home():
 def welcome():
     return render_template('welcome.html')  # render a template
 
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid credentials. Please try again'
-        else:
-            session['logged_in'] = True
-            flash('You were just logged in!')
-            # The url_for() function generates an endpoint for the provided method.
-            return redirect(url_for('home'))
-    return render_template('login.html', error=error)
-
-
-@app.route('/logout')
-@login_required
-def logout():
-    session.pop('logged_in', None)
-    flash('You were just logged out!')
-    return redirect(url_for('welcome'))
 
 # start the server
 if __name__ == '__main__':
