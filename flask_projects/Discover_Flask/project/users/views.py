@@ -1,9 +1,9 @@
 from flask import flash, redirect, render_template, request, \
      url_for, Blueprint
-from .form import LoginForm
-from ..models import User, bcrypt
+from .form import LoginForm, RegisterForm
+from ..models import User
 from flask_login import login_required, login_user, logout_user
-
+from project import db, bcrypt
 
 ################
 # config
@@ -44,3 +44,19 @@ def logout():
     logout_user()
     flash('You were logged out.')
     return redirect(url_for('home.welcome'))
+
+
+@users_blueprint.route('/register', methods=['GET', 'POST'])   # pragma: no cover
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        user = User(
+            name=form.username.data,
+            email=form.email.data,
+            password=form.password.data
+        )
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        return redirect(url_for('home.home'))
+    return render_template('register.html', form=form)
