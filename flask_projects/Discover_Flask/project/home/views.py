@@ -1,6 +1,8 @@
-from flask import render_template, Blueprint
+from flask import render_template, Blueprint, flash, request, redirect, url_for
 from project.models import *
-from flask_login import login_required
+from flask_login import login_required, current_user
+from .forms import MessageForm
+
 
 home_blueprint = Blueprint(
     'home', __name__,
@@ -12,12 +14,25 @@ home_blueprint = Blueprint(
 # routes
 ################
 
-# use decorators to link the function to an url
-@home_blueprint.route('/')
-@login_required
+# use decorators to link the function to a url
+@home_blueprint.route('/', methods=['GET', 'POST'])   # pragma: no cover
+@login_required   # pragma: no cover
 def home():
-    posts = db.session.query(BlogPost)
-    return render_template('index.html', posts=posts)
+    error = None
+    form = MessageForm(request.form)
+    if form.validate_on_submit():
+        new_message = BlogPost(
+            form.title.data,
+            form.description.data,
+            current_user.id
+        )
+        db.session.add(new_message)
+        db.session.commit()
+        flash('New entry was successfully posted. Thanks.')
+        return redirect(url_for('home.home'))
+    else:
+        posts = db.session.query(BlogPost).all()
+        return render_template('index.html', posts=posts, form=form, error=error)
 
 
 @home_blueprint.route('/welcome')
