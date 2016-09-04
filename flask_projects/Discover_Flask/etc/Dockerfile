@@ -23,8 +23,9 @@ RUN     pip3 install flask \
         flask-sqlalchemy flask-migrate \
         flask-bcrypt flask-login \
         flask-wtf \
-        flask-script flask-testing coverage \
-        flask-mail  flask-whooshalchemy flask-babel \
+        flask-testing coverage \
+        flask-mail  \
+        flask-script flask-whooshalchemy flask-babel \
         # gunicorn
         gunicorn  \
         # PosgreSQL

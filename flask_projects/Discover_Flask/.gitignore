@@ -6,11 +6,12 @@
 .idea/
 .idea/*
 
+coverage/
+
 lib/
 lib/*
 
 *.py[cod]
-*.pyc
 *.pyo
 
 bin/
@@ -26,3 +27,4 @@ include/
 include/*
 
 env/
+venv/
