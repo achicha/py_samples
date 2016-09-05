@@ -1,13 +1,13 @@
-from flask import render_template, Blueprint, flash, request, redirect, url_for
-from project.models import *
-from flask_login import login_required, current_user
-from .forms import MessageForm
+from flask import render_template, Blueprint, flash, request, redirect, url_for  # pragma: no cover
+from project.models import *  # pragma: no cover
+from flask_login import login_required, current_user  # pragma: no cover
+from .forms import MessageForm  # pragma: no cover
 
 
 home_blueprint = Blueprint(
     'home', __name__,
     template_folder='templates'
-)
+)  # pragma: no cover
 
 
 ################
@@ -15,8 +15,8 @@ home_blueprint = Blueprint(
 ################
 
 # use decorators to link the function to a url
-@home_blueprint.route('/', methods=['GET', 'POST'])   # pragma: no cover
-@login_required   # pragma: no cover
+@home_blueprint.route('/', methods=['GET', 'POST'])
+@login_required
 def home():
     error = None
     form = MessageForm(request.form)

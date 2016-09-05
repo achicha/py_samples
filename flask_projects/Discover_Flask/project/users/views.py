@@ -12,7 +12,7 @@ from project import db, bcrypt
 users_blueprint = Blueprint(
     'users', __name__,
     template_folder='templates'
-)
+)  # pragma: no cover
 
 
 ################

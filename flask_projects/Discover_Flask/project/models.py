@@ -1,6 +1,6 @@
-from project import db, bcrypt
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship
+from project import db, bcrypt  # pragma: no cover
+from sqlalchemy import ForeignKey  # pragma: no cover
+from sqlalchemy.orm import relationship  # pragma: no cover
 
 
 class BlogPost(db.Model):
@@ -17,7 +17,7 @@ class BlogPost(db.Model):
         self.description = description
         self.author_id = author_id
 
-    def __repr__(self):
+    def __repr__(self):  # pragma: no cover
         return '<title {}>'.format(self.title)
 
 
@@ -48,5 +48,5 @@ class User(db.Model):
     def get_id(self):
         return self.id
 
-    def __repr__(self):
+    def __repr__(self):  # pragma: no cover
         return '<name - {}>'.format(self.name)
