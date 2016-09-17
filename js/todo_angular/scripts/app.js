@@ -4,15 +4,16 @@ angular.module("todoListApp", [])
         $scope.helloWorld = function () {
             console.log("Hello there! This is helloWorld controller function, in the main Ctrl!");
         };
-    })
 
-    .controller('coolCtrl', function ($scope) {
-        $scope.whoAmI = function () {
-            console.log("hello there, this is the coolCtrl function!");
-        };
+    $scope.todos = [
+        {"name": "first"},
+        {"name": "second"},
+        {"name": "third"},
+        {"name": "four"},
+        {"name": "five"},
+        {"name": "six"}
+    ]
 
-        $scope.helloWorld = function () {
-            console.log("this is not main ctrl!");
-        };
-    });;
+    });
+
 

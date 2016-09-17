@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+}
+
+.list {
+    padding: 50px;
+}
+
+
+.list .item {
+    border: 1px solid cadetblue;
+    padding:10px;
+    background-color: whitesmoke;
+}
+
+.list .item.editing-item .actions {margin-top: 17px;}
+
+
+.list .item .actions {
+    float: right;
+    margin-right: 20px;
+}
