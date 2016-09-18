@@ -16,8 +16,9 @@
 
             <div class="actions">
                 <a href="" ng-click=" editing =! editing">Edit</a>
-                <a href="" ng-click="helloConsole()">Save</a>
-                <a href="" ng-click="helloWorld()" class="delete">Delete</a>
+                <a href="" ng-click="saveTodo(todo)">Save</a>
+                <!--$index is a position in ng-repeat(todos) array-->
+                <a href="" ng-click="deleteTodo(todo, $index)" class="delete">Delete</a>
             </div>
         </div>
     {{todos}}
