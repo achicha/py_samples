@@ -6,21 +6,19 @@ angular.module("todoListApp", [])
         $scope.helloWorld = function () {
             console.log("Hello there! This is helloWorld controller function, in the main Ctrl!");
         };
-
-    $scope.todos = [
-        {"name": "first"},
-        {"name": "second"},
-        {"name": "third"},
-        {"name": "four"},
-        {"name": "five"},
-        {"name": "six"}
-    ]
-
+        dataService.getTodos(function (response) {
+                    console.log(response.data);
+                    $scope.todos = response.data;
+                });
     })
 
-    .service('dataService', function () {
+    .service('dataService', function ($http) {
         this.helloConsole = function () {
             console.log("This is the hello console service!");
+        };
+        this.getTodos = function(callback) {
+            $http.get('mock/todos.json')
+                .then(callback)
         }
     });
 
