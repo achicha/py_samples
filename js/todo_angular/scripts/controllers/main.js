@@ -5,8 +5,10 @@ angular.module('todoListApp')
 
         $scope.addTodo = function () {
             var todo = {name: "This is a new todo."};
-            //update todos scope by push
-            $scope.todos.push(todo);
+            //add element to the end of todos scope by push
+            //$scope.todos.push(todo);
+            //add to the beginning
+            $scope.todos.unshift(todo)
         };
         dataService.getTodos(function (response) {
                     console.log(response.data);
