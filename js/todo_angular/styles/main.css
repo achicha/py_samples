@@ -1,0 +1,53 @@
+body {
+    background: #edeff0;
+    font-size: 16px;
+}
+
+a {
+    color: cornflowerblue;
+    font-style: italic;
+    text-decoration:  none;
+}
+a:hover {
+    color: #65a1cc;
+}
+
+h1 {
+    text-align: center;
+}
+
+/*list*/
+.list {
+    padding: 50px;
+    width: 90%;
+    text-left: right
+}
+
+.list .item {
+    border: 1px solid cadetblue;
+    padding:10px;
+    background-color: whitesmoke;
+}
+
+.list .item .actions {
+    float: right;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.list .item.editing-item .actions {margin-top: 5px;}
+
+.list .edited label:after {
+    content: " edited";
+    text-transform: uppercase;
+    color: #a7b9c4;
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+.list .completed label {
+    color: #a7b9c4;
+    text-decoration: line-through;
+}
+
+
