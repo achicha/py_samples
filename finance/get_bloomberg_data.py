@@ -14,6 +14,21 @@ def parse_args():
     args = parser.parse_args()
     return args
 
+"""
+# todo rewrite intraday part
+
+import requests
+
+url = 'http://www.bloomberg.com/markets/api/bulk-time-series/price/FSSTI%3AIND?timeFrame=1_DAY'
+resp = requests.get(url).json()
+
+
+clean_quotes = []
+for j in resp[0]['price']:
+    clean_quotes.append(((dt.strptime(j['dateTime'], '%Y-%m-%dT%H:%M:%SZ')).strftime('%Y%m%d%H%M%S'), j['value']))
+    
+"""
+
 def create_links(_args):
     links = []
     if _args.interval=='historical':
