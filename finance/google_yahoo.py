@@ -1,4 +1,5 @@
-import pandas.io.data as web
+#import pandas.io.data as web
+import pandas_datareader.data as web
 import datetime
 from pandas import ExcelWriter
 
