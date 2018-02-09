@@ -2,3 +2,15 @@
 */.idea/
 .idea/
 .ipynb_checkpoints
+
+.venv/
+bin/
+dist/
+build/
+wheelhouse/
+*.egg-info/
+*.py[co]
+__pycache__/
+.tox
+*.deb
+doc/_build/
